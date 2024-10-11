@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="color: blue;">Keterangan Produk</h2>
+<div class="products">
+    {% for product in products %}
+    <div class="product">
+        <img src="../static/images/curry.jpeg" alt="{{ product.name }}" style="width: 200px; height: 200px;">
+        <p style="color: black;">{{ product.name }}</p>
+        <p style="color: black;">Harga: {{ product.price }}</p>
+        <p style="color: black;">{{ product.description }}</p>
+        <form method="POST" action="/add_to_cart">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <button type="submit">Tambah ke Keranjang</button>
+        </form>
+        <form method="POST" action="/delete_product">
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <button type="submit" style="background-color: red; color: white;">Hapus Menu</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="about-us">
+    <h2>Tentang Kami</h2>
+    <p>Kami menyediakan berbagai pilihan makanan lezat yang dibuat dengan bahan-bahan berkualitas tinggi. Mulai dari Chicken Katsu Curry yang gurih hingga dessert manis, semua produk kami dibuat dengan cinta untuk memastikan kepuasan pelanggan.</p>
+    <p>Selalu segar dan siap diantar ke pintu rumah Anda. Kami berkomitmen untuk memberikan yang terbaik bagi pelanggan kami.</p>
+</div>
+
+<div class="customer-reviews">
+    <h2 style="color: blue;">Ulasan Pelanggan</h2>
+    <blockquote>
+        "Chicken Katsu Curry-nya sangat enak! Porsinya pas dan rasanya luar biasa. Pasti akan pesan lagi." - Andi
+    </blockquote>
+    <blockquote>
+        "Makanan yang dikirim selalu hangat dan fresh. Layanan yang luar biasa!" - Siti
+    </blockquote>
+</div>
+{% endblock %}

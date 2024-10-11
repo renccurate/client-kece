@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Daftar Produk di Keranjang</h2>
+<div class="cart">
+    {% if cart %}
+        {% for item in cart %}
+        <div class="cart-item">
+            <h3>{{ item.product.name }}</h3>
+            <p>Harga: {{ item.product.price }}</p>
+            <p>Jumlah: {{ item.quantity }}</p>
+            <h3 style="color: black;">{{ item.product.name }}</h3>
+
+            <form action="{{ url_for('remove_from_cart', item_id=item.id) }}" method="POST">
+                <button type="submit" class="btn btn-danger">Hapus</button>
+            </form>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Keranjang Anda kosong.</p>
+    {% endif %}
+</div>
+
+<!-- Button to add new products -->
+<a href="{{ url_for('add_product') }}" class="btn btn-primary">Add Products</a>
+
+<!-- Button to open WhatsApp link -->
+<a href="https://api.whatsapp.com/send/?phone=%2B6281367981881&text&type=phone_number&app_absent=0" class="btn btn-success" target="_blank">Check Out</a>
+{% endblock %}
